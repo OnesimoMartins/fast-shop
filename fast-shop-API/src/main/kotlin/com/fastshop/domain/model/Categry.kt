@@ -6,4 +6,5 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Category(@Id @GeneratedValue(strategy=GenerationType.IDENTITY)val id:Int=0,var name:String?="",)
+data class Category(@Id @GeneratedValue(strategy=GenerationType.IDENTITY)val id:Int=0,
+                    var name:String?="",)

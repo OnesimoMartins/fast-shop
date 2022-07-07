@@ -8,5 +8,6 @@ data class SaleInput(
     val amountPaid:BigDecimal,
     val clientType:ClientType,
     val paymentMode: PaymentMode,
-    val products:List<ProductSaleInput>
+    val products:List<SaleItemInput>
+    //    links ="[ /id/confirm; ]'
 )
