@@ -1,2 +1,2 @@
 # fast-shop
-Application for stores management built using kotlin, spring boot and vanilla js
+Application for stores management built using kotlin, spring boot and Angular
