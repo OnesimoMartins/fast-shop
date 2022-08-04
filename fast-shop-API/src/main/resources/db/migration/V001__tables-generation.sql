@@ -9,11 +9,10 @@ id BIGINT not null auto_increment,
 name varchar(100) not null,
 image VARCHAR(200) null,
 available_unities int not null default 0,
-description varchar(300) not null,
+description varchar(300) not null default "sem descrição",
 category_id SMALLINT not null REFERENCES category(id),
 measurement_unit varchar(5) not null,
 purchise_price Decimal(12,2) not null,
-reseller_price Decimal(12,2) not null,
 price Decimal(12,2) not null,
 PRIMARY KEY(id)
 ) engine =innoDB DEFAULT CHARSET=utf8;
@@ -21,9 +20,8 @@ PRIMARY KEY(id)
 create table sale(
 id BIGINT not null auto_increment ,
 date timestamp DEFAULT( CURRENT_TIMESTAMP()),
-status enum ('CANCELED','PROCESSING','CREATED') not null default 'CREATED',
+status enum ('CANCELED','CONFIRMED','CREATED') not null default 'CREATED',
 payment_mode enum('POS','MONEY') not null,
-client_type  enum('CONSUMER','RESELLER') not null,
 amount_paid NUMERIC(12,2) not null,
 transshipment NUMERIC(12,2) not null,
 total NUMERIC(12,2) not null,

@@ -11,12 +11,11 @@ data class Product(
     val name:String="",
     val description:String="",
     @OneToOne
-    val category:Category?=null,
-    val availableUnities:Long?=0,
+    var category:Category?=null,
+    var availableUnities:Long?=0,
     @Enumerated(EnumType.STRING)
     val measurementUnit: MeasurementUnity?=null,
 
     val price:BigDecimal= BigDecimal.ZERO,
-    val resellerPrice:BigDecimal= BigDecimal.ZERO,
     val purchisePrice:BigDecimal= BigDecimal.ZERO,
     )
