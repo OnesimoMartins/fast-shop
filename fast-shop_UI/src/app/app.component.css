@@ -1,0 +1,19 @@
+.app-container{
+  background-color: #D8c3a5;
+  margin: 0 auto;
+  padding: 1px;
+  height: 100vh;
+  display: flex;
+}
+
+.app{
+  /* z-index: 5; */
+  padding: 20px;
+  flex: 1;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  background-color: #EAE7DC;
+  border-radius: 10px;
+}

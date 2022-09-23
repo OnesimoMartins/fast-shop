@@ -1,0 +1,8 @@
+<p>
+  app-pagination works!
+</p>
+
+<ul class="pagination">
+  <li class="page-item"> <button class="page-link" (click)="previousPage()" [disabled]="pageControl.isFirst" > anterior</button> </li>
+  <li class="page-item" (click)="nextPage()"> <button class="page-link"  [disabled]="pageControl.isLast"> próximo</button> </li>
+</ul>

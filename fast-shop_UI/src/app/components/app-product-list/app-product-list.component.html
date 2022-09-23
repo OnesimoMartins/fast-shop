@@ -1,0 +1,45 @@
+
+<app-container-nav [active]="active" [navItens]="navItens"></app-container-nav>
+
+<div class="content-container ">
+  <div class="container-background ">
+  <table class="table table-fixed">
+    <thead>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Categoria</th>
+      <th>Descrição</th> <!-- mouse hover para decricao-->
+
+      <th>Preço(compra)</th>
+      <th>Preço(venda)</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </thead>
+    <tbody *ngFor="let product of products.content">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.category.name}}</td>
+      <td>{{product.description}}</td> <!-- mouse hover para decricao-->
+
+      <td>{{formatMoney(product.purchise_price)}}</td>
+      <td>{{formatMoney(product.price)}}</td>
+      <td> <a [href]="product.links[1].href"
+        routerLink="../product/update/{{product.id}}"
+        class="btn btn-light"><i class="fas fa-pencil-alt"></i> </a> </td>
+      <td> <a (click)="deleteProduct(product)" class="btn btn-light"><i class="fas fa-trash-alt"></i> </a> </td>
+    </tbody>
+  </table>
+</div>
+
+
+<ul class="pagination">
+  <li class="page-item">
+    <button    class="page-link" (click)="previousPage()" [disabled]="isFirst()">
+      anterior
+    </button>
+  </li>
+  <li class="page-item" (click)="nextPage()">
+    <button class="page-link" [disabled]=" !hasNextPage()">próximo</button>
+  </li>
+</ul>
+</div>

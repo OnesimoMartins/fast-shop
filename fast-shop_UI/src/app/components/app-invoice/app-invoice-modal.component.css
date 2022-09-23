@@ -1,0 +1,26 @@
+.itens-header{
+  display: flex;
+  flex-direction:row ;
+}
+.itens-header div{
+  margin-left: 14px;
+ font:bold;
+}
+
+.itens-body{
+  width: 14px;
+  margin-left: 14px;
+ font:bold;
+}
+
+.custom-modal{
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+}
+.modal-content{
+  width: 600px;
+}

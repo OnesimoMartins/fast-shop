@@ -1,0 +1,55 @@
+.header-container{
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.header-container h2{
+  font-weight: bold;
+  color: #8e8d8a;
+  border-bottom: 2px solid #8e8d8a ;
+}
+
+.few-products{
+  color: red;
+}
+
+.quantity-input{
+  width: 100px;
+  white-space: none;
+}
+.ok-button{
+  margin-left: 3px;
+color: #fff;
+  background-color: #E85A4f;
+  width: 75px;
+  font-size: smaller;
+  text-align: center;
+  border-color: #E85A4f;
+}
+.ok-button:focus,.ok-button:hover{
+  background-color: #b93b32;
+  border-color: #b93b32;
+
+}
+.ok-button:focus,.ok-button::after,.ok-button:active:focus{
+  background-color: #E85A4f;
+  border-color: #E85A4f;
+  box-shadow:0 0 0 .25rem #E98074
+}
+
+
+
+
+
+
+
+
+.table-fixed{
+  max-height: 145px;
+}
+
+th{
+  color: #8e8d8a;
+}
+

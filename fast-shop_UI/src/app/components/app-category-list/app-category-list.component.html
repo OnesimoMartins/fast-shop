@@ -1,0 +1,49 @@
+<app-container-nav
+  [active]="activeItem"
+  [navItens]="navItens"
+></app-container-nav>
+
+<div class="content-container">
+  <div class="container-background">
+    <table class="table">
+      <thead>
+        <th style="width: 15%">ID</th>
+        <th style="width: 25%">Nome</th>
+        <th style="width: 25%">Editar</th>
+        <th style="width: 25%">Eliminar</th>
+      </thead>
+
+      <tbody *ngFor="let item of categoies!.content">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>
+          <a
+            class="btn btn-light"
+            routerLink="../category/update/{{ item.id }}"
+          >
+            <i class="fas fa-pen-alt"></i>
+          </a>
+        </td>
+
+        <td>
+          <button
+            (click)="deleteCategory(item)"
+            class="btn btn-light"
+          >
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="pagination">
+    <li class="page-item" (click)="previousPage()">
+      <button class="page-link" [disabled]="isFirst()">anterior</button>
+    </li>
+
+    <li class="page-item" (click)="nextPage()">
+      <button class="page-link" [disabled]="!hasNextPage()">próximo</button>
+    </li>
+  </ul>
+</div>

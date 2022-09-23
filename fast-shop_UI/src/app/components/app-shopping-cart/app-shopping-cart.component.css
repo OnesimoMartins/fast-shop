@@ -1,0 +1,16 @@
+.item-list{
+height: 62px;
+max-height: 62px;
+overflow: auto;
+border-bottom: 1px #8e8d8a solid;
+}
+.error-space{
+  height: 13px;
+  margin-bottom: 4px;
+}
+
+.total{
+color:#8e8d8a ;
+ font-weight: bold;
+  margin-bottom: 9px;
+}

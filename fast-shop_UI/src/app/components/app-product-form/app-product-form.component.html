@@ -1,0 +1,138 @@
+
+
+<app-container-nav [navItens]="navItens" [active]="activeItem"></app-container-nav>
+
+<!-- FORM -->
+<form (ngSubmit)="onSubmit()" #productForm="ngForm" novalidate class="content-container">
+  <div class="row md-4">
+    <div class="col md-5">
+      <label class="form-label">Nome do producto</label>
+      <input
+        class="form-control form-control-after"
+        autocomplete="off"
+        name="productName"
+        type="text"
+        name="name"
+        [(ngModel)]="product.name"
+        #name="ngModel"
+        required
+        minlength="3"
+        maxlength="30"
+      />
+
+      <div class="form-error" *ngIf="name.hasError('minlength') && name.dirty">
+        nome demasiado curto
+      </div>
+      <div class="form-error" *ngIf="name.hasError('required') && name.touched">
+        nome não deve estar em baranco.
+      </div>
+
+    </div>
+
+    <div class="col md-7">
+      <label class="form-label form-control-after">Descrição do producto</label>
+      <textarea
+        class="form-control form-control-after"
+        type="text"
+        [(ngModel)]="product.description"
+        name="description"
+      ></textarea>
+      <div class="form-text"></div>
+    </div>
+  </div>
+
+  <div class="row md-4">
+    <div class="col md-5">
+      <label class="form-label">Preço da compra</label>
+      <input
+        autocomplete="off"
+        class="form-control form-control-after"
+        type="number"
+        name="purchise_price"
+        #purchise_price="ngModel"
+        [(ngModel)]="product.purchise_price"
+        min="1" required
+      />
+      <div class="form-error" *ngIf="purchise_price.hasError('required') && purchise_price.touched">
+        Este campo não deve estar em branco.
+      </div>
+      <div class="form-error" *ngIf="purchise_price.hasError('min') && purchise_price.touched">
+        O preço mínimo deve ser 1 AOA.
+      </div>
+    </div>
+
+    <div class="col md-5">
+      <label class="form-label">Preço da venda (AOA)</label>
+
+      <input
+        class="form-control form-control-after"
+        type="number"
+        name="price"
+        [(ngModel)]="product.price"
+        name="price" #price="ngModel"
+        step="0.01"
+        min="1" required
+        />
+        <div class="form-error" *ngIf="price.hasError('required') && price.touched">
+          Este campo não deve estar em branco.
+        </div>
+        <div class="form-error" *ngIf="price.hasError('min') && price.touched">
+          O preço mínimo deve ser 1 AOA.
+        </div>
+    </div>
+
+  </div>
+
+  <div class="row md-4">
+    <div class="col-3 md-2">
+      <label class="form-label">Unidade de medida</label>
+      <select class="form-select form-control-after"
+       name="measurement_unit" [(ngModel)]="product.measurement_unit"
+       aria-label="Default select example"
+       pattern="^((?!seleccione).)*$">
+
+        <option disabled selected>seleccione</option>
+        <option [value]="unitie.id" *ngFor="let unitie of measurementUnities">{{unitie.name+"(" +unitie.id+")"}}</option>
+      </select>
+    </div>
+
+    <div class="col-3 md-3">
+      <label class="form-label">Categoria</label>
+
+      <select class="form-select form-control-after" name="category"   [(ngModel)]="product.category_id"
+      aria-label="Default select example"
+      pattern="[^0]"
+      >
+
+        <option value="" disabled selected value="0">seleccione</option>
+        <option [value]="category.id" *ngFor="let category of categories">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!--  -->
+  <div class="row md-6 buttons-group">
+    <div class="col-2">
+      <button
+        class="form-control btn-primary"
+        [disabled]="productForm.invalid"
+        type="submit"
+      >
+        {{ btnText }}
+      </button>
+    </div>
+
+    <div class="col-2">
+      <button
+        class="form-control btn-secondary"
+        type="button"
+        (click)="resetForm(productForm)"
+      >
+        limpar
+      </button>
+    </div>
+
+  </div>
+</form>

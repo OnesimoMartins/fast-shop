@@ -1,0 +1,12 @@
+<div class="header-container">
+  <h2>{{active.text}}</h2>
+<div class="mt-4">
+  <ul class="nav nav-tabs" >
+
+    <li class="nav-item"*ngFor="let i of navItens">
+      <a class="nav-link" routerLink="{{i.link}}" [ngClass]="{ 'active' :i==active}" > {{i.text}}</a>
+    </li>
+
+  </ul>
+</div>
+</div>

@@ -1,0 +1,95 @@
+<app-container-nav [active]="active" [navItens]="navItens"></app-container-nav>
+
+<form novalidate #form="ngForm" (ngSubmit)="createSale()">
+  <div class="content-container">
+    <div class="container-background">
+      <h5 class="tittle">Producto seleccionados</h5>
+
+
+      <div class="error-space" *ngIf="!cartHasItens()">
+        <p  class="form-error">
+          O seu carrinho está vazio. Adicione itens para realizar a venda
+        </p>
+      </div>
+
+      <div class="item-list">
+        <table class="table">
+          <tbody *ngFor="let item of cart.itens">
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ formatMoney(item.total) }}</td>
+          </tbody>
+        </table>
+      </div>
+
+      <div >
+        <div>
+          <h6 class="total">  TOTAL : {{ formatMoney(cart.totalAmount) }}</h6>
+
+            <div class="row md-4">
+              <div class="col md-5">
+                <label class="form-label">Valor dado:</label>
+
+                <input
+                  type="number"
+                  [(ngModel)]="givenMoney"
+                  name="givenMoney"
+                  #moneyGiven="ngModel"
+                  min="{{ cart.totalAmount }}"
+                  class="col-2 form-control form-control-after"
+                />
+
+                <div class="error-space">
+                  <p *ngIf="moneyGiven.hasError('min')" class="form-error">
+                    O valor dado deve ser maior ou igual a
+                    {{ formatMoney(cart.totalAmount) }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-3 md-2">
+                <label class="form-label">Forma de pagamento</label>
+                <select
+                  [(ngModel)]="paymentMode"
+                  name="paymentMode"
+                  class="form-select form-control-after"
+                  #payment_mode="ngModel"
+
+                  pattern="(POS)|(MONEY)"
+
+                  aria-label="Default select example">
+
+                  <option  selected disabled>seleccione</option>
+                  <option value="POS">POS</option>
+                  <option value="MONEY">Dinheiro</option>
+
+                </select>
+
+                <div class="error-space" >
+                  <p class="form-error" *ngIf="payment_mode.hasError('pattern')">
+                    Seleccione uma forma de pagamento.</p>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row md-6 buttons-group">
+
+      <div class="col-3">
+        <button class="form-control btn-primary"
+        [disabled]="form.invalid || !cartHasItens() "
+
+        type="submit">confirmar venda
+      </button>
+    </div>
+
+      <div class="col-3">
+        <button class="form-control btn-secondary"
+        type="button"
+        (click)="cleanChart()">limpar carrinho</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,26 @@
+th{
+  color: #8e8d8a;
+}
+ .quantity-input{
+  width: 75px;
+  white-space: none;
+}
+.ok-button{
+  margin-left: 3px;
+color: #fff;
+  background-color: #E85A4f;
+  width: 75px;
+  font-size: smaller;
+  text-align: center;
+  border-color: #E85A4f;
+}
+.ok-button:focus,.ok-button:hover{
+  background-color: #b93b32;
+  border-color: #b93b32;
+
+}
+.ok-button:focus,.ok-button::after,.ok-button:active:focus{
+  background-color: #E85A4f;
+  border-color: #E85A4f;
+  box-shadow:0 0 0 .25rem #E98074
+}

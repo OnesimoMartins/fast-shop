@@ -1,0 +1,47 @@
+<app-container-nav [active]="activeItem" [navItens]="navItens"></app-container-nav>
+
+
+<form action="" class="content-container" #form="ngForm" (submit)="onSubmit()" novalidate>
+
+  <div class="row">
+    <div class="col-8">
+      <label class="form-label">Nome da categoria</label>
+      <input
+      type="text"
+      name="categoryName"
+      [(ngModel)]="category.name"
+      #category_name="ngModel"
+       class="form-control form-control-after"
+       minlength="3"
+      required>
+    </div>
+  </div>
+  <div class="form-error" *ngIf="category_name.hasError('required') && category_name.touched">
+    Este campo não deve estar em branco.
+  </div>
+  <div class="form-error" *ngIf="category_name.hasError('minlength') && category_name.touched">
+    Este campo deve ter no mínimo 3 caracteres.
+  </div>
+
+  <div class="row md-6 buttons-group">
+    <div class="col-2">
+      <button  class="form-control btn-primary"
+        type="submit"
+      >
+        {{ buttonText }}
+      </button>
+    </div>
+
+    <div class="col-2">
+      <button
+        class="form-control btn-secondary"
+        type="button"
+        (click)="cleanField()"
+        [disabled]="form.invalid"
+      >
+        limpar
+      </button>
+    </div>
+  </div>
+
+</form>

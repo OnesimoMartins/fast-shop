@@ -1,0 +1,24 @@
+.header-container{
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.header-container h2{
+  font-weight: bold;
+  color: #8e8d8a;
+  border-bottom: 2px solid #8e8d8a ;
+}
+.nav-link{
+margin-right: 3px;
+background-color:#fff;
+color:#8e8d8a  ;
+}
+.nav-tabs .nav-link.active{
+background-color: #8e8d8a;
+}
+
+
+
+
+

@@ -1,0 +1,59 @@
+<div class="header-container">
+  <h2>Stock de productos</h2>
+</div>
+
+<div class="content-container">
+  <div class="container-background">
+    <table class="table table-striped table-hover table-fixed">
+      <thead>
+        <th style="width: 10%">ID</th>
+        <th style="width: 30%">Nome</th>
+        <th>Unidades Disponiveis</th>
+        <th>Acrescentar stock</th>
+        <th>Status</th>
+      </thead>
+      <tbody *ngFor="let product of products!.content">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td [ngClass]="{ 'few-products': product.available_unities <= 5 }">
+          {{ product.available_unities }}
+        </td>
+        <td style="display:flex;">
+
+          <input
+            type="number"
+            name="qt"
+            placeholder="Quantidade"
+            class="input-group-text quantity-input"
+            #quantity
+            min="1"
+          />
+          <button class="form-control ok-button"
+           (click)="increaseQuantity(product,quantity.value)"
+           >confirmar</button>
+        </td>
+
+        <td>
+          {{ product.available_unities == 0 ? "Indisponível" : "Disponível" }}
+        </td>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="pagination">
+    <li class="page-item">
+      <button
+        class="page-link"
+        (click)="previousPage()"
+        [disabled]="isFirst()"
+      >
+        anterior
+      </button>
+    </li>
+    <li class="page-item" (click)="nextPage()">
+      <button class="page-link" [disabled]="!hasNextPage()">próximo</button>
+    </li>
+  </ul>
+</div>
+
+

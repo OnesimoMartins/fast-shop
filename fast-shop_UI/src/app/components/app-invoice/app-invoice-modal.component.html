@@ -1,0 +1,50 @@
+<ng-container *ngIf="visible" class="">
+  <div class="modal-dialog custom-modal" >
+    <div class="modal-content">
+
+      <div class="modal-header">
+      <h2 class="modal-tittle">Factura</h2>
+      </div>
+
+      <div class="modal-body">
+        <h6> <strong>Localização :</strong>{{invoiceInfo.morada}}</h6>
+        <h6> <strong>NIF :</strong>{{invoiceInfo.NIF}}</h6>
+        <h6> <strong>Telemovel :</strong>{{invoiceInfo.telefone}}</h6>
+        <h6> <strong>Email :</strong>{{invoiceInfo.email}}</h6>
+      </div>
+
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Total</th>
+        </thead>
+        <tbody *ngFor="let item of content!.itens">
+          <td>{{item.product.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.total}}</td>
+        </tbody>
+      </table>
+
+    <h6><strong>Total :</strong>{{content.total}}</h6>
+    <!-- <h6><strong>Valor dado :</strong>{{content.amount_paid}}</h6>
+    <h6><strong>Troco :</strong>{{content.transshipment}}</h6> -->
+
+
+
+      <div class="modal-footer">
+
+        <div class="col-3">
+          <button type="submit" (click)="close()" class="form-control btn-primary">imprimir</button>
+        </div>
+
+        <div class="col-3">
+          <button type="button"  (click)="close()" class="form-control btn-secondary ">fechar</button>
+         </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</ng-container>
