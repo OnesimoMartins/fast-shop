@@ -8,6 +8,7 @@ import javax.validation.constraints.*
 
 @ToString
 data class ProductInput (
+
     @field:NotBlank
     val name:String,
 
@@ -23,11 +24,6 @@ data class ProductInput (
     @field:Positive
     @field:NotNull
     val price:BigDecimal,
-
-    @field:Positive
-    @field:NotNull
-    @JsonProperty("reseller_price")
-    val resellerPrice:BigDecimal,
 
     @field:Positive
     @field:NotNull

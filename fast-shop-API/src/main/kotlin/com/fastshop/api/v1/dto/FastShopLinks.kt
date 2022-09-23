@@ -3,8 +3,8 @@ package com.fastshop.api.v1.dto
 import org.springframework.hateoas.IanaLinkRelations
 import org.springframework.hateoas.Link
 
-
 // TODO solve problem with kotlin reflection 'methodOn'
+
 //catedorie links
 fun categoriesLink() = Link.of("http://localhost:8080/categories").withRel(IanaLinkRelations.COLLECTION)
 fun categorieLink(id: Int) = Link.of("http://localhost:8080/categories/${id}").withRel(IanaLinkRelations.SELF)
@@ -24,3 +24,16 @@ fun removeSaleItem(saleId: Long,itemId:Long) = Link.of("http://localhost:8080/sa
 fun productListLink() = Link.of("http://localhost:8080/products").withRel(IanaLinkRelations.COLLECTION)
 fun productLink(id: Long) = Link.of("http://localhost:8080/products/${id}").withRel(IanaLinkRelations.SELF)
 // add stock
+fun productStockLink(id: Long) = Link.of("http://localhost:8080/products/stock?id=${id}&quantity=").withRel("stock")
+
+
+
+
+fun nextOrPreviusPageCategories(page:Int,size:Int)=
+Link.of("http://localhost:8080/categories?page=${page}&size=${size}")
+
+fun nextOrPreviusPageProducts(page:Int,size:Int)=
+    Link.of("http://localhost:8080/products?page=${page}&size=${size}")
+
+fun nextOrPreviusPageProductsAvailables(page:Int,size:Int)=
+    Link.of("http://localhost:8080/products?page=${page}&size=${size}&available=true")

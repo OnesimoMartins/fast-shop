@@ -19,18 +19,6 @@ fun toCategoryModel(category: Category): CategoryModel = category.let {
     model
 }
 
-fun toCategorieCollectionModel(categories: List<Category>): CollectionModel<CategoryModel> =
-    categories.let {
-
-        val categoriesModel = ArrayList<CategoryModel>()
-        it.forEach { m ->
-            run {
-                categoriesModel.add(CategoryModel(m.id!!, m.name!!).add(categorieLink(m.id)))
-            }
-        }
-
-        return CollectionModel.of(categoriesModel).removeLinks()
-    }
 
 fun toSaleModel(sale: Sale): SaleModel {
     val model = SaleModel(
@@ -101,7 +89,7 @@ fun toProductModel(product: Product): ProductModel = product.let {
         measurementUnit = it.measurementUnit!!,
         price = it.price,
         purchisePrice = it.purchisePrice
-    ).add(productListLink()).add(productLink(it.id))
+    ).add(productListLink()).add(productLink(it.id!!)).add(productStockLink(it.id!!))
 }
 
 fun toProductModelCollection(products: MutableCollection<Product>): CollectionModel<ProductModel> =
@@ -115,13 +103,67 @@ fun toProductModelCollection(products: MutableCollection<Product>): CollectionMo
         CollectionModel.of(products)
     }
 
-fun toProductPageModel(products: Page<Product>): PagedModel<ProductModel> {
-  val content=products.content.map { toProductModel(it) }.toList()
+fun toCategoryPagedModel(categories: Page<Category>): PagedModel<CategoryModel> {
+    val content=categories.content.map { toCategoryModel(it) }.toList()
 
-    return  PagedModel.of(content,PagedModel.PageMetadata(
-      products.size.toLong(),
-      products.number.toLong()
-      ,products.totalElements,products.totalPages.toLong()
-  ))
+
+    val page=  PagedModel.of(content,PagedModel.PageMetadata(
+        categories.size.toLong(),
+        categories.number.toLong()
+        ,categories.totalElements,categories.totalPages.toLong()
+    ))
+
+
+    //next
+    if(!categories.isLast)
+       page.add(
+           nextOrPreviusPageCategories( page = categories.number+1
+                             ,size=categories.size).withRel("next")
+       )
+    //previous
+    if(!categories.isFirst)
+        page.add(
+            nextOrPreviusPageCategories( page = categories.number-1
+                ,size=categories.size).withRel("previous")
+        )
+
+
+    return  page
 
 }
+
+
+fun toProductPagedModel(products: Page<Product>,
+                        justAvailables:Boolean): PagedModel<ProductModel> {
+    val content=products.content.map { toProductModel(it) }.toList()
+
+    val page=  PagedModel.of(content,PagedModel.PageMetadata(
+        products.size.toLong(),
+        products.number.toLong()
+        ,products.totalElements,products.totalPages.toLong()
+    ))
+
+    //next
+    if(!products.isLast)
+        page.add(
+            if(justAvailables)
+                nextOrPreviusPageProductsAvailables(page = products.number+1
+                    ,size=products.size).withRel("next")
+                        else
+            nextOrPreviusPageProducts( page = products.number+1
+                ,size=products.size).withRel("next")
+        )
+    //previous
+    if(!products.isFirst)
+        page.add(
+            if(justAvailables)
+                nextOrPreviusPageProductsAvailables(page = products.number-1
+                    ,size=products.size).withRel("previous")
+            else
+            nextOrPreviusPageProducts( page = products.number-1
+                ,size=products.size).withRel("previous")
+        )
+
+    return  page
+}
+

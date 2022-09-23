@@ -1,5 +1,6 @@
 package com.fastshop.domain.model
 
+import com.fastshop.domain.exception.BusinessException
 import java.math.BigDecimal
 import javax.persistence.*
 
@@ -7,7 +8,7 @@ import javax.persistence.*
 data class Product(
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    val id:Long?=null,
+    var id:Long?=null,
     val name:String="",
     val description:String="",
     @OneToOne
@@ -18,4 +19,11 @@ data class Product(
 
     val price:BigDecimal= BigDecimal.ZERO,
     val purchisePrice:BigDecimal= BigDecimal.ZERO,
-    )
+    ){
+
+    fun increaseQuantity(qt:Int){
+        if(qt<1) throw BusinessException("Invalid Stock quntity")
+        this.availableUnities = this.availableUnities?.plus(qt)
+    }
+
+}
