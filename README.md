@@ -1,4 +1,4 @@
-# FullStack App ( Spring + Angular ) : Newspaper Management System 
+# FullStack App ( Spring + Angular ) : Fast Shop
 
 
 
